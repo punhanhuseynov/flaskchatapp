@@ -7,3 +7,12 @@ Project is created with:
 * JavaScript
 * Html
 * Css
+
+## Setup
+To run this project:
+
+```
+$ . env/scripts/activate
+$ py run.py
+
+```
