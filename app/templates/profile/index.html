@@ -1,0 +1,154 @@
+<!-- Loopple Templates: https://www.loopple.com/templates | Copyright Loopple (https://www.loopple.com) | This copyright notice and this permission notice shall be included in all copies or substantial portions of the Software. -->
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Chat Page Dashboard</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700">
+    <link rel="stylesheet" href="https://rawcdn.githack.com/Loopple/loopple-public-assets/ad60f16c8a16d1dcad75e176c00d7f9e69320cd4/argon-dashboard/css/nucleo/css/nucleo.css">
+    <link rel="stylesheet" href="/static/assets/css/theme.css">
+    <link rel="stylesheet" href="/static/assets/css/loopple/loopple.css">
+</head>
+
+<body>
+    
+    <div class="main-content" id="panel">
+        
+        <div class="container-fluid pt-3">
+            <div class="row removable">
+                <div class="col-lg-12 px-sm-0">
+                    <div class="card shadow-none px-0 bg-transparent mt-0 mb-4">
+                        <div class="card-body px-0 pb-0">
+                            <div class="px-0 pb-4">
+                                <div class="row flex-row">
+                                    <div class="col-lg-3 mb-4">
+                                        <div class="card max-height-vh-70 h-100 overflow-auto overflow-x-hidden mb-5 mb-lg-0" style="max-height: 70vh;">
+                                            <form class="card-header">
+                                                <div class="input-group mb-0">
+                                                    <input type="text" placeholder="Search" class="form-control" aria-label="Amount (to the nearest dollar)">
+                                                    <div class="input-group-append">
+                                                        <span class="input-group-text">
+                                                            <i class="fa fa-search"></i>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                            <div  id='usersBar' class="card-body p-2">
+                                                
+                                                <!-- <a href="javascript:;" class="d-block p-2 rounded-lg bg-gradient-primary">
+                                                    <div class="d-flex p-2">
+                                                        <img alt="Image" src="https://images.unsplash.com/photo-1529068755536-a5ade0dcb4e8?ixlib=rb-1.2.1&amp;ixid=MnwxMjA3fDB8MHxzZWFyY2h8MzV8fHBvcnRyYWl0fGVufDB8MnwwfHw%3D&amp;auto=format&amp;fit=crop&amp;w=800&amp;q=60" class="avatar shadow">
+                                                        <div class="ml-2">
+                                                            <div class="justify-content-between align-items-center">
+                                                                <h4 class="text-white mb-0 mt-1">Andrew Jahna<span class="badge badge-success"></span>
+                                                                </h4>
+                                                                <p class="text-white mb-0 text-xs font-weight-normal">Job: Senior Java Developer</p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </a>
+                                                 -->
+                                                
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div id="chatbar" style="transition:1s;width:0%;overflow: hidden;" class="col-lg-6">
+                                        <div class="card max-height-vh-70" style="max-height: 70vh;">
+                                            <div class="card-header shadow-xl">
+                                                <div class="row">
+                                                    <div class="col-md-10">
+                                                        <div class="d-flex align-items-center">
+                                                            <div class="ms-3">
+                                                                <h3  id='profilename' class="mb-0 d-block"></h3>
+                                 
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div id="messages" class="card-body overflow-auto overflow-x-hidden">
+                                               
+                                            </div>
+                                            <div class="card-footer d-block">
+                                                <form id="messageForm" class="align-items-center">
+                                                    <div class="input-group mb-3">
+                                                        <input type="text"  name="message" id="message" placeholder="Search" class="form-control" aria-label="Amount (to the nearest dollar)" required>
+                                                        <div class="input-group-append">
+                                                            <button type="button" id='btn-submit' class="input-group-text color-blue">
+                                                                <i class="fa fa-paper-plane"></i>
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                </form>
+                                            </div>
+
+                                        </div>
+
+
+
+
+
+                                    </div>
+                                    <div class="col-lg-3">
+                                        <div class="card max-height-vh-70 h-100 overflow-auto overflow-x-hidden mb-5 mb-lg-0" style="max-height: 70vh;">
+                                            <div class="card-body p-2">
+                                                <a href="javascript:;" class="d-block p-2">
+                                                </a>
+                                                <div class="p-2 text-center">
+                                                    <a href="javascript:;" class="d-block p-2">
+                                                        <img alt="Image" width="50px" height="50px"  src="/static/assets/img/{{user.img}}">
+                                                    </a>
+                                                    <div class="ml-2 mt-0 mb-0 text-center">
+                                                        <div class="justify-content-between align-items-center">
+                                                            <h3 class="mb-0 mt-1">{{user.name}}</h3>
+                                                            
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <hr class="my-3">
+                                                <div class="mx-3">
+                                                    <h4 class="mb-0">Applied for</h4>
+                                                    <p class="text-sm text-muted font-weight-normal">Job: {{user.job}}</p>
+                                                </div>
+                                                <hr class="my-3">
+                                                <div class="mx-3" >
+                                                    <div class="d-flex align-items-center mb-3">
+                                                        <i class="fa fa-envelope opacity-7"></i>
+                                                        <div class="ml-3">
+                                                            <h5 class="mb-0">Email</h5>
+                                                            <span class="text-sm text-primary">{{user.email}}
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="d-flex align-items-center">
+                                                       
+                                                        <div class="ml-3">
+                                                            
+                                                            <a href="/logout" class="text-sm ">Logout</a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+  
+    <script src="https://rawcdn.githack.com/Loopple/loopple-public-assets/5cef8f62939eeb089fa26d4c53a49198de421e3d/argon-dashboard/js/vendor/jquery.min.js"></script>
+    <script src="https://rawcdn.githack.com/Loopple/loopple-public-assets/5cef8f62939eeb089fa26d4c53a49198de421e3d/argon-dashboard/js/vendor/bootstrap.bundle.min.js"></script>
+    <script src="https://rawcdn.githack.com/Loopple/loopple-public-assets/5cef8f62939eeb089fa26d4c53a49198de421e3d/argon-dashboard/js/vendor/js.cookie.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js"></script>
+    <script src="https://rawcdn.githack.com/Loopple/loopple-public-assets/5cef8f62939eeb089fa26d4c53a49198de421e3d/argon-dashboard/js/vendor/chart.extension.js"></script>
+    <script src="https://rawcdn.githack.com/Loopple/loopple-public-assets/7bb803d2af2ab6d71d429b0cb459c24a4cd0fbb4/argon-dashboard/js/argon.min.js"></script>
+    <script src="{{url_for('static',filename='assets/js/getdata.js')}}"></script>
+    <script src="{{url_for('static',filename='assets/js/getmessages.js')}}"></script>
+
+</body>
