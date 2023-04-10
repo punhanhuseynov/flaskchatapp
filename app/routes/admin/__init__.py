@@ -66,8 +66,9 @@ def getmessage():
                     "time":i.time,
                     "sender":i.user1,
                     "reciever":i.user2,
+                    "current_id":current_user.id,
                     "reciever_color":'bg-gradient-primary text-white',
-                    "content":'end'
+                    "content":'end',
                 }
             )
         
@@ -87,9 +88,20 @@ def getmessage():
         
         return jsonify(all_messages_json)
     
+@app.route('/deletemessage/<id>',methods=['DELETE'])
+@login_required
+def delete_message(id):
+    
+    if request.method=='DELETE':
+        data=Messages.query.filter_by(id=id).first()
+        db.session.delete(data)
+        db.session.commit()
+        response={
+            "message":"silindi"
+        }
+        return jsonify(response)
 
-
-
+        
 @app.route('/logout')
 @login_required
 def logout():

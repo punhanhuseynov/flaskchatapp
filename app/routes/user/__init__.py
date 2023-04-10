@@ -7,10 +7,11 @@ def login():
         email=request.form['email']
         password=request.form['password']
         data=Users().query.filter_by(email=email,password=password).first()
-        login_user(data)
+       
         if data is None:
             return "error"
         else:
+            login_user(data)
             return redirect('/')
     return render_template('user/login.html')
 

@@ -7,10 +7,10 @@ let userBar = document.getElementById('usersBar')
 let messagesBar = document.getElementById('messages')
 let userprofile = document.getElementsByClassName('user')
 let confrimer // email confrimer 
+let profilename //profile name
 
 let message = document.getElementById("message")
 let subbtn = document.getElementById('btn-submit')
-
 let chat = document.getElementById('chatbar')
 
 subbtn.addEventListener('click', () => {
@@ -53,6 +53,7 @@ recieverName=null
 function refreshMessages(email, name) {
     document.getElementById('profilename').innerHTML = name
     confrimer = email
+    profilename=name
     chat.style.width = '100%'
 
     writeMessages(email)
@@ -73,9 +74,6 @@ for (let i = 0; i < userprofile.length; i++) {
 }
 
 
-
-
-
 function addMessage() {
    
     let xhr = new XMLHttpRequest();
@@ -92,12 +90,13 @@ function addMessage() {
 
     xhr.onload = function () {
         callRefresh(confrimer,recieverName)
+        messagesBar.scrollTop=messagesBar.scrollHeight
 
     };
 
     xhr.send(JSON.stringify(data));
     message.value = ''
-   
+
     
 
 
@@ -124,29 +123,54 @@ function writeMessages(email) {
             messagesBar.innerHTML += `
             <div class="col-auto">
                  <div class="card ${mes[i].reciever_color}">
-                 <div class="card-body p-2">
-                  <p class="mb-1">
-                  ${mes[i].message} </p>
-                    <div class="d-flex align-items-center justify-content-${mes[i].content} text-sm opacity-6">
-                             <i class="fa fa-check-double mr-1 text-xs" aria-hidden="true"></i>
-                                    <small>${mes[i].time}</small>
-                     </div>
+
+                    <div class="card-body p-2">
+
+                        <p class="mb-1"> ${mes[i].message} </p>
+
+                        <div class="d-flex align-items-center justify-content-${mes[i].content} text-sm opacity-6">
+
+                                <i class="fa fa-check-double mr-1 text-xs" aria-hidden="true"></i>
+                                <small>${mes[i].time}</small> 
+                                ${
+                                mes[i].sender==mes[i].current_id
+                                   ? `<i onclick='deleteMessage(${mes[i].id})' class=" btn  fa fa-trash mr-1 text-xs" aria-hidden="true"></i>
+                                    `
+                                    :""
+                                }
+
+                        </div>
                     </div>
                  </div>
             </div>
             
             
-            `
+          
+          `
         }
 
     }
     xhr.send(JSON.stringify(data))
+ 
 }
 
 
+
 function callRefresh(em,name){
-    setTimeout(2000,refreshMessages(em,name))
-   
+    setTimeout(2000,refreshMessages(em,name))  
+}
+
+
+function deleteMessage(id){
+    xhr=new XMLHttpRequest()
+    url="http://localhost:5000/deletemessage/"+id
+
+    xhr.open('delete',url)
+    xhr.onload=()=>{
+        console.log(xhr.responseText)
+        refreshMessages(confrimer,profilename)
+    }
+    xhr.send()
     
 }
 
