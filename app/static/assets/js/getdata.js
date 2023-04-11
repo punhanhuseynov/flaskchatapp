@@ -13,6 +13,8 @@ let message = document.getElementById("message")
 let subbtn = document.getElementById('btn-submit')
 let chat = document.getElementById('chatbar')
 
+check=null
+
 subbtn.addEventListener('click', () => {
     if( message.value==''|| message.value==null){
         window.alert('fill')
@@ -51,6 +53,7 @@ http.onload = () => {
 recieverName=null
 
 function refreshMessages(email, name) {
+    clearInterval(check)
     document.getElementById('profilename').innerHTML = name
     confrimer = email
     profilename=name
@@ -61,10 +64,18 @@ function refreshMessages(email, name) {
     recieverName=name
     console.log(recieverName,email)
 
+    check=setInterval(()=>{
+        refreshMessages(confrimer,profilename)
+        console.log('called')
+    },10000)
+    
+
+   
+    
+
+}   
 
 
-
-}
 
 for (let i = 0; i < userprofile.length; i++) {
     userprofile[i].addEventListener('onclick', () => {
@@ -156,8 +167,8 @@ function writeMessages(email) {
 
 
 
-function callRefresh(em,name){
-    setTimeout(2000,refreshMessages(em,name))  
+function callRefresh(email,name){
+    setTimeout(2000,refreshMessages(email,name))  
 }
 
 
