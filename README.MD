@@ -9,7 +9,7 @@ Project is created with:
 * Css
 
 ## Setup
-To run this project:
+To run this project :
 
 ```
 $ . env/scripts/activate
